@@ -1,1 +1,1 @@
-web: gunicorn --chdir team_work --log-file - team_work.wsgi:application
+web: gunicorn team_work.wsgi:application --log-file -
