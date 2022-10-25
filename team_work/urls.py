@@ -31,8 +31,6 @@ urlpatterns = [
     re_path(r'^chaining/', include('smart_selects.urls')),
     path('users/', include("users.urls")),
     path('', include("articles.urls")),
-    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-    url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
 ]
 
 if settings.DEBUG:
