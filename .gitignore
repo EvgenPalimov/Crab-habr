@@ -130,8 +130,6 @@ dmypy.json
 .pyre/
 /.run/
 
-#sqlite3
-*.sqlite3
 /.idea/
 /.github/
 /media/django-summernote/
