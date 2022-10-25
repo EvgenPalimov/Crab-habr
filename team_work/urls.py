@@ -16,8 +16,11 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.template.defaulttags import url
 from django.urls import path, include, re_path
 from django.views.generic.base import RedirectView
+from django.views.static import serve
+
 from articles.views import IndexListView
 
 urlpatterns = [
@@ -28,6 +31,8 @@ urlpatterns = [
     re_path(r'^chaining/', include('smart_selects.urls')),
     path('users/', include("users.urls")),
     path('', include("articles.urls")),
+    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
 ]
 
 if settings.DEBUG:

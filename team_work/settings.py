@@ -15,11 +15,10 @@ import urllib
 from os.path import dirname, abspath
 from pathlib import Path
 
+import whitenoise.middleware
 from dotenv import dotenv_values
 from dotenv import load_dotenv
 
-import django_heroku
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -53,6 +52,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -136,11 +136,6 @@ USE_TZ = False
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-django_heroku.settings(locals())
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),  # Important for Heroku
-)
 
 #STATIC_ROOT = "/home/cfedeploy/webapps/cfehome_static_root/"
 
