@@ -16,6 +16,10 @@ class Category(models.Model):
     image = models.CharField(max_length=255, null=False, default='')
     is_active = models.BooleanField(default=True)
 
+    @staticmethod
+    def choices():
+        return [(blog.guid, blog.name) for blog in Category.objects.filter(is_active=True)]
+
     def __str__(self):
         return f'{self.name}'
 
@@ -23,7 +27,7 @@ class Category(models.Model):
 class Article(models.Model):
     guid = models.CharField(primary_key=True, max_length=64, editable=False, default=uuid.uuid4, db_column='guid')
     author_id = models.ForeignKey(User, db_column='author_id', on_delete=models.CASCADE)
-    creation_date = models.DateField(db_column='creation_date', auto_now_add=True)
+    creation_date = models.DateField(db_column='creation_date', auto_now_add=True, db_index=True)
     topic = models.CharField(max_length=1024, null=False)
     article_body = models.TextField(default='ici', null=False)
     blocked = models.BooleanField(default=False)
@@ -34,6 +38,8 @@ class Article(models.Model):
                f'автор: {self.author_id.email} ' \
                f'от {self.creation_date}'
 
+    class Meta:
+        ordering = ['-creation_date']
 
 class ArticleCategory(models.Model):
     guid = models.CharField(primary_key=True, max_length=64, editable=False, default=uuid.uuid4, db_column='guid')
