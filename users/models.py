@@ -45,7 +45,7 @@ class UserProfile(models.Model):
     def get_photo(user_id):
         ref = UserProfile.objects.get(userid=user_id)
         if ref:
-            return MEDIA_URL + ref.profile_image.name if ref.profile_image else '/' + STATIC_URL + 'images/comments-1.png'
+            return MEDIA_URL + ref.profile_image.name if ref.profile_image else STATIC_URL + 'images/comments-1.png'
         else:
             return STATIC_URL + 'images/comments-1.png'
 
