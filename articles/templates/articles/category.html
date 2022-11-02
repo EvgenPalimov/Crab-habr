@@ -30,7 +30,7 @@
                                                 </div>
                                             </div>
                                             <h5 class="following-blog-post-title">
-                                                <a  href="{% url 'articles:article-detail' article.guid %}">
+                                                <a href="{% url 'articles:article-detail' article.guid %}">
                                                     {{ article.topic }}
                                                 </a>
                                             </h5>
@@ -46,10 +46,8 @@
                                                         </a>
                                                     </span>
                                                 </div>
-                                                <div class="post-meta-right-side">
-                                                    <a href="#">
-                                                        <img src="{% static 'images/heart.png' %}" alt="" />
-                                                    </a>
+                                                <div class="post-meta-right-side col-5">
+                                                    {% include 'articles/includes/category_bottom.html' %}
                                                 </div>
                                             </div>
                                         </div>
