@@ -12,13 +12,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import json
 import os
 import urllib
-from os.path import dirname, abspath
 from pathlib import Path
 
 import whitenoise.middleware
 from dotenv import dotenv_values
 from dotenv import load_dotenv
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -66,8 +64,7 @@ ROOT_URLCONF = 'team_work.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -135,9 +132,6 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-
-#STATIC_ROOT = "/home/cfedeploy/webapps/cfehome_static_root/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
