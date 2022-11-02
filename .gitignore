@@ -133,4 +133,3 @@ dmypy.json
 /.idea/
 /.github/
 /media/django-summernote/
-/team_work.sqlite3
