@@ -4,8 +4,7 @@ from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.generic.base import ContextMixin
 
-from articles.models import Category, Article
-from articles.filters import ArticleFilter
+from articles.models import Category
 
 
 class UserIsAdminCheckMixin(View):
@@ -39,20 +38,4 @@ class BaseClassContextMixin(ContextMixin):
         context = super(BaseClassContextMixin, self).get_context_data(**kwargs)
         context['title'] = self.title
         context['menu_links'] = Category.objects.all().order_by('name')
-        return context
-
-
-class ArticleSearchMixin(ContextMixin):
-    def __init__(self):
-        self.request = None
-        self.articles_filtered = None
-
-    def get_queryset(self):
-        qs = Article.objects.filter(blocked=False)
-        self.articles_filtered = ArticleFilter(self.request.GET, queryset=qs)
-        return self.articles_filtered.qs
-
-    def get_context_data(self, **kwargs):
-        context = super(ArticleSearchMixin, self).get_context_data(**kwargs)
-        context['filter'] = self.articles_filtered
         return context

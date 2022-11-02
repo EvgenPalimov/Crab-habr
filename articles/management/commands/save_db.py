@@ -2,8 +2,7 @@ import json
 from os import path
 
 from django.core.management.base import BaseCommand
-
-from articles.models import Article, Category
+from articles.models import Article, ArticleCategory, Category, Comment
 from users.models import User
 
 JSON_PATH = 'articles/json'
@@ -50,3 +49,4 @@ class Command(BaseCommand):
                          'article_body': article.article_body})
 
             save_json('articles', data)
+

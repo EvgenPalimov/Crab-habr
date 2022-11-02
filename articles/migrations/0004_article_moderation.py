@@ -4,6 +4,7 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+
     dependencies = [
         ('articles', '0003_remove_articlehistory_blocked_article_blocked'),
     ]
